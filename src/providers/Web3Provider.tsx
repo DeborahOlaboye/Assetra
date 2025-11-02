@@ -12,8 +12,15 @@ if (!projectId) {
   throw new Error('NEXT_PUBLIC_REOWN_PROJECT_ID is not set')
 }
 
-// Set up QueryClient
-const queryClient = new QueryClient()
+// Set up QueryClient with default options
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+})
 
 // Set up Wagmi Adapter
 const wagmiAdapter = new WagmiAdapter({
@@ -36,7 +43,7 @@ createAppKit({
   },
   themeMode: 'light',
   themeVariables: {
-    '--w3m-font-family': 'var(--font-geist-sans)',
+    '--w3m-font-family': 'system-ui, -apple-system, sans-serif',
     '--w3m-accent': '#000000',
     '--w3m-border-radius-master': '2px',
   },
