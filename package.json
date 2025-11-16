@@ -15,8 +15,12 @@
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@prisma/client": "^5.22.0",
-    "@reown/appkit": "^1.8.12",
-    "@reown/appkit-adapter-wagmi": "^1.8.12",
+    "@reown/appkit": "^1.8.14",
+    "@reown/appkit-adapter-wagmi": "^1.8.14",
+    "compile": "hardhat compile",
+    "test:contracts": "hardhat test",
+    "deploy:baseSepolia": "hardhat run scripts/deploy.ts --network baseSepolia",
+    "deploy:base": "hardhat run scripts/deploy.ts --network base"
     "@tanstack/react-query": "^5.90.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -27,19 +31,26 @@
     "react-dom": "19.2.0",
     "react-hook-form": "^7.66.0",
     "tailwind-merge": "^3.3.1",
-    "viem": "^2.38.5",
-    "wagmi": "^2.19.2",
+    "viem": "^2.39.0",
+    "wagmi": "^2.19.4",
     "zod": "^4.1.12"
   },
   "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@openzeppelin/hardhat-upgrades": "^3.0.0",
     "@tailwindcss/postcss": "^4.1.16",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^16.3.1",
     "eslint": "^9",
     "eslint-config-next": "16.0.1",
     "prisma": "^5.22.0",
+    "hardhat": "^2.19.4",
     "tailwindcss": "^4.1.16",
     "typescript": "^5"
+  },
+  "dependencies-smart-contracts": {
+    "@openzeppelin/contracts-upgradeable": "^5.0.1"
   }
 }
