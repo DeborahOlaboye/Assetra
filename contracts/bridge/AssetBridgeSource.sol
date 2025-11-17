@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/utils/PausableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
@@ -130,7 +130,7 @@ contract AssetBridgeSource is Initializable, AccessControlUpgradeable, PausableU
         external
         onlyRole(OPERATOR_ROLE)
     {
-        IERC721Upgradeable erc721 = IERC721Upgradeable(token);
+        IERC721 erc721 = IERC721(token);
         for (uint256 i = 0; i < tokenIds.length; i++) {
             erc721.transferFrom(address(this), to, tokenIds[i]);
         }
