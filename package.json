@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
+    "@openzeppelin/contracts": "4.9.6",
+    "@openzeppelin/contracts-upgradeable": "4.9.6",
     "@prisma/client": "^5.22.0",
     "@reown/appkit": "^1.8.14",
     "@reown/appkit-adapter-wagmi": "^1.8.14",
@@ -50,8 +52,5 @@
     "prisma": "^5.22.0",
     "tailwindcss": "^4.1.16",
     "typescript": "^5"
-  },
-  "dependencies-smart-contracts": {
-    "@openzeppelin/contracts-upgradeable": "^5.0.1"
   }
 }
