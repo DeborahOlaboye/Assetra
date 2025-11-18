@@ -119,6 +119,9 @@ model Document {
   version           Int          @default(1)
   uploadedAt        DateTime     @default(now())
   expiresAt         DateTime?
+  gatewayUrl        String?
+  pinStatus         PinStatus    @default(PINNED)
+  contentHash       String?
 
   // Relations
   userId            String
@@ -129,6 +132,30 @@ model Document {
   @@index([userId])
   @@index([assetId])
   @@index([type])
+  @@index([ipfsHash])
+}
+
+// IPFS Upload tracking model
+model IpfsUpload {
+  id                String       @id @default(uuid())
+  ipfsHash          String       @unique
+  gatewayUrl        String
+  fileSize          Int
+  fileName          String
+  mimeType          String
+  category          FileCategory
+  uploadedAt        DateTime     @default(now())
+  pinStatus         PinStatus    @default(PINNED)
+  metadata          Json?
+  
+  // Relations
+  userId            String
+  assetId           String?
+  
+  @@index([userId])
+  @@index([assetId])
+  @@index([category])
+  @@index([pinStatus])
 }
 
 // Enums
@@ -188,4 +215,19 @@ enum DocumentType {
   LEGAL_AGREEMENT
   CERTIFICATE
   OTHER
+}
+
+enum PinStatus {
+  PINNED
+  UNPINNED
+  PENDING
+  FAILED
+}
+
+enum FileCategory {
+  IMAGE
+  VIDEO
+  DOCUMENT
+  METADATA
+  CERTIFICATE
 }
