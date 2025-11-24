@@ -1,7 +1,10 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 import "@openzeppelin/hardhat-upgrades";
+import "solidity-coverage";
+import "hardhat-gas-reporter";
 import "dotenv/config";
+import "@nomicfoundation/hardhat-verify";
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -11,7 +14,17 @@ const config: HardhatUserConfig = {
         enabled: true,
         runs: 200,
       },
+      viaIR: true,
     },
+  },
+  gasReporter: {
+    enabled: process.env.REPORT_GAS === 'true',
+    currency: 'USD',
+    gasPrice: 21,
+    showTimeSpent: true,
+  },
+  mocha: {
+    timeout: 100000,
   },
   networks: {
     hardhat: {
@@ -45,6 +58,10 @@ const config: HardhatUserConfig = {
     tests: "./test",
     cache: "./cache",
     artifacts: "./artifacts",
+  },
+  typechain: {
+    outDir: 'typechain-types',
+    target: 'ethers-v6',
   },
 };
 
